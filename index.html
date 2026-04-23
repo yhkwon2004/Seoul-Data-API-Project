@@ -34,6 +34,41 @@
     </header>
 
     <main class="container" id="mainContent">
+      <section class="hero card glass">
+        <div>
+          <p class="hero-kicker">Seoul Smart Commerce</p>
+          <h2>오늘 어디서, 무엇을, 언제 팔아야 하는지<br />데이터로 바로 결정하세요.</h2>
+          <p class="hero-desc">서울시 실시간 도시데이터 API(인구/혼잡/교통) + 날씨 + 이벤트를 통합 분석해 초보 상인도 즉시 실행할 수 있는 액션 플랜을 제공합니다.</p>
+          <div class="hero-actions">
+            <button type="button" id="loadSampleBtn" class="secondary" data-i18n="sample">샘플 데이터</button>
+            <button type="button" id="analyzeBtn" data-i18n="analyze">AI 분석 실행</button>
+          </div>
+        </div>
+        <div class="hero-metrics" id="heroMetrics">
+          <article class="metric-card">
+            <p>현재 상태</p>
+            <strong id="metricState">-</strong>
+          </article>
+          <article class="metric-card">
+            <p>3시간 매출 변화</p>
+            <strong id="metricTrend">-</strong>
+          </article>
+          <article class="metric-card">
+            <p>추천 상품 TOP1</p>
+            <strong id="metricTop1">-</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="card step-card">
+        <h2>빠른 시작 (3단계)</h2>
+        <ol class="stepper">
+          <li><span>1</span> 로그인 및 개인정보 동의</li>
+          <li><span>2</span> 지역/업종 프로필 저장</li>
+          <li><span>3</span> 실시간 JSON 분석 실행</li>
+        </ol>
+      </section>
+
       <section class="card">
         <h2 data-i18n="authTitle">로그인 / 회원가입</h2>
         <form id="authForm" class="grid-form" novalidate>
@@ -51,47 +86,33 @@
         <p id="authStatus" aria-live="polite"></p>
       </section>
 
-      <section class="card">
-        <h2 data-i18n="consentTitle">개인정보 수집·이용 동의</h2>
-        <label class="consent-row"><input id="agreeRequired" type="checkbox" /> <span data-i18n="requiredConsent">필수 동의: 회원 인증 및 맞춤 추천 제공</span></label>
-        <label class="consent-row"><input id="agreeMarketing" type="checkbox" /> <span data-i18n="optionalConsent">선택 동의: 행사/프로모션 알림 수신</span></label>
-        <details>
-          <summary data-i18n="consentDetailTitle">약관 자세히 보기</summary>
-          <p data-i18n="consentDetail">수집항목: 이메일, 프로필, 서비스 이용 로그. 보유기간: 회원 탈퇴 시 또는 관련 법령 준수 기간.</p>
-        </details>
-      </section>
-
-      <section class="card">
-        <h2 data-i18n="profileTitle">프로필 설정</h2>
-        <form id="profileForm" class="grid-form">
-          <label>
-            <span data-i18n="storeName">상호명</span>
-            <input type="text" id="storeName" required />
-          </label>
-          <label>
-            <span data-i18n="businessType">업종</span>
-            <select id="businessType">
-              <option>분식/간편식</option>
-              <option>음료/디저트</option>
-              <option>핸드메이드/잡화</option>
-              <option>기타</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="mainArea">주 활동 지역</span>
-            <input type="text" id="mainArea" placeholder="예: 홍대 관광특구" required />
-          </label>
-          <label>
-            <span data-i18n="notification">알림 채널</span>
-            <select id="notificationMode">
-              <option>이메일</option>
-              <option>SMS</option>
-              <option>이메일+SMS</option>
-            </select>
-          </label>
-          <button type="submit" data-i18n="saveProfile">프로필 저장</button>
-        </form>
-        <p id="profileStatus" aria-live="polite"></p>
+      <section class="card two-column">
+        <div>
+          <h2 data-i18n="consentTitle">개인정보 수집·이용 동의</h2>
+          <label class="consent-row"><input id="agreeRequired" type="checkbox" /> <span data-i18n="requiredConsent">필수 동의: 회원 인증 및 맞춤 추천 제공</span></label>
+          <label class="consent-row"><input id="agreeMarketing" type="checkbox" /> <span data-i18n="optionalConsent">선택 동의: 행사/프로모션 알림 수신</span></label>
+          <details>
+            <summary data-i18n="consentDetailTitle">약관 자세히 보기</summary>
+            <p data-i18n="consentDetail">수집항목: 이메일, 프로필, 서비스 이용 로그. 보유기간: 회원 탈퇴 시 또는 관련 법령 준수 기간.</p>
+          </details>
+        </div>
+        <div>
+          <h2 data-i18n="profileTitle">프로필 설정</h2>
+          <form id="profileForm" class="grid-form">
+            <label><span data-i18n="storeName">상호명</span><input type="text" id="storeName" required /></label>
+            <label><span data-i18n="businessType">업종</span>
+              <select id="businessType">
+                <option>분식/간편식</option><option>음료/디저트</option><option>핸드메이드/잡화</option><option>기타</option>
+              </select>
+            </label>
+            <label><span data-i18n="mainArea">주 활동 지역</span><input type="text" id="mainArea" placeholder="예: 홍대 관광특구" required /></label>
+            <label><span data-i18n="notification">알림 채널</span>
+              <select id="notificationMode"><option>이메일</option><option>SMS</option><option>이메일+SMS</option></select>
+            </label>
+            <button type="submit" data-i18n="saveProfile">프로필 저장</button>
+          </form>
+          <p id="profileStatus" aria-live="polite"></p>
+        </div>
       </section>
 
       <section class="card">
@@ -99,18 +120,31 @@
         <div id="eventList" class="event-list"></div>
       </section>
 
+
+      <section class="card">
+        <h2>빠른 입력 생성기 (초보 모드)</h2>
+        <div class="quick-builder">
+          <label>위치<input id="qbArea" type="text" value="홍대 관광특구" /></label>
+          <label>현재 혼잡도<select id="qbCongestion"><option>여유</option><option selected>붐빔</option><option>매우붐빔</option></select></label>
+          <label>현재 인구 최소<input id="qbMin" type="number" value="9000" /></label>
+          <label>현재 인구 최대<input id="qbMax" type="number" value="14000" /></label>
+          <label>기온(℃)<input id="qbTemp" type="number" value="24" /></label>
+          <label>강수(mm)<input id="qbRain" type="number" value="0" /></label>
+          <button type="button" id="generateJsonBtn">입력 JSON 자동 생성</button>
+        </div>
+      </section>
+
       <section class="card">
         <h2 data-i18n="inputTitle">실시간 데이터 입력(JSON)</h2>
         <textarea id="inputJson" rows="18" aria-label="실시간 데이터 JSON 입력"></textarea>
         <div class="actions">
-          <button id="analyzeBtn" type="button" data-i18n="analyze">AI 분석 실행</button>
-          <button id="loadSampleBtn" type="button" class="secondary" data-i18n="sample">샘플 데이터</button>
           <button id="copyResultBtn" type="button" class="secondary" data-i18n="copy">결과 복사</button>
         </div>
       </section>
 
       <section class="card">
         <h2 data-i18n="outputTitle">AI 코치 분석 결과(JSON)</h2>
+        <div id="insightChips" class="chips"></div>
         <pre id="outputJson">{}</pre>
       </section>
     </main>

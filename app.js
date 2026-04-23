@@ -123,6 +123,22 @@ function setLanguage(lang) {
   localStorage.setItem("ui_language", lang);
 }
 
+
+function renderInsights(result) {
+  const chips = document.getElementById("insightChips");
+  const top1 = result["지금팔아야하는상품TOP3"]?.[0] || "-";
+  const trend = result["매출예측"]?.["변화"] || "-";
+  chips.innerHTML = `
+    <span class="chip">현재상태: ${result["현재상태"]}</span>
+    <span class="chip">3시간 변화: ${trend}</span>
+    <span class="chip">TOP1 상품: ${top1}</span>
+  `;
+
+  document.getElementById("metricState").textContent = result["현재상태"] || "-";
+  document.getElementById("metricTrend").textContent = trend || "-";
+  document.getElementById("metricTop1").textContent = top1 || "-";
+}
+
 function initEvents() {
   $("loadSampleBtn").addEventListener("click", () => {
     $("inputJson").value = JSON.stringify(sampleInput, null, 2);
@@ -134,9 +150,11 @@ function initEvents() {
       const result = analyze(payload);
       outputJson.classList.remove("error-text");
       outputJson.textContent = JSON.stringify(result, null, 2);
+      renderInsights(result);
     } catch (error) {
       outputJson.classList.add("error-text");
       outputJson.textContent = `입력 데이터 오류: ${error.message}`;
+      document.getElementById("insightChips").innerHTML = "";
     }
   });
 
@@ -146,6 +164,26 @@ function initEvents() {
     } catch {
       // clipboard unavailable in some browsers
     }
+  });
+
+
+  $("generateJsonBtn").addEventListener("click", () => {
+    const generated = {
+      ...sampleInput,
+      "위치": $("qbArea").value || sampleInput["위치"],
+      "인구데이터": {
+        ...sampleInput["인구데이터"],
+        "혼잡도": $("qbCongestion").value,
+        "최소": Number($("qbMin").value),
+        "최대": Number($("qbMax").value)
+      },
+      "날씨": {
+        ...sampleInput["날씨"],
+        "기온": String($("qbTemp").value),
+        "강수": String($("qbRain").value)
+      }
+    };
+    $("inputJson").value = JSON.stringify(generated, null, 2);
   });
 
   $("authForm").addEventListener("submit", (event) => {
