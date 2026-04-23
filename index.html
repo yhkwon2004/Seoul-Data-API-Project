@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>서울 소상공인 AI 코치</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">SEOUL COACH</div>
+        <nav>
+          <button class="nav-btn active">대시보드</button>
+          <button class="nav-btn">분석 리포트</button>
+          <button class="nav-btn">행사/플리마켓</button>
+          <button class="nav-btn">재고/리스크</button>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h1>소상공인 실시간 비즈니스 코치</h1>
+            <p>서울 데이터 기반 · 매출 최적화 · 실행 전략</p>
+          </div>
+          <div class="top-actions">
+            <button id="openAccountPanel" class="ghost">로그인/회원가입</button>
+            <button id="openTermsPanel" class="ghost">약관/동의</button>
+          </div>
+        </header>
+
+        <section class="grid kpi-grid" id="kpiGrid">
+          <article class="card kpi"><span>현재 상태</span><strong id="kpiState">-</strong></article>
+          <article class="card kpi"><span>3시간 매출 변화</span><strong id="kpiTrend">-</strong></article>
+          <article class="card kpi"><span>추천 TOP1</span><strong id="kpiTop">-</strong></article>
+        </section>
+
+        <section class="card">
+          <h2>초보 모드 입력</h2>
+          <div class="quick-builder">
+            <label>지역<input id="qbArea" value="홍대 관광특구" /></label>
+            <label>혼잡도<select id="qbCongestion"><option>여유</option><option selected>붐빔</option><option>매우붐빔</option></select></label>
+            <label>인구 최소<input id="qbMin" type="number" value="9200" /></label>
+            <label>인구 최대<input id="qbMax" type="number" value="13800" /></label>
+            <label>기온(℃)<input id="qbTemp" type="number" value="24" /></label>
+            <label>강수(mm)<input id="qbRain" type="number" value="0" /></label>
+          </div>
+          <div class="actions">
+            <button id="analyzeBtn">AI 분석 실행</button>
+            <button id="downloadJsonBtn" class="secondary">결과 JSON 다운로드</button>
+            <button id="toggleAdvancedBtn" class="ghost">고급 JSON 입력 열기</button>
+          </div>
+        </section>
+
+        <section class="card hidden" id="advancedSection">
+          <h2>고급 JSON 입력</h2>
+          <textarea id="inputJson" rows="14"></textarea>
+        </section>
+
+        <section class="grid two-col">
+          <article class="card"><h3>핵심 전략</h3><ul id="strategyList"></ul></article>
+          <article class="card"><h3>지금 행동 3가지</h3><ul id="actionList"></ul></article>
+        </section>
+      </main>
+    </div>
+
+    <aside class="right-panel" id="accountPanel" aria-hidden="true">
+      <div class="panel-head"><h3>계정 설정</h3><button class="close" data-close="accountPanel">×</button></div>
+      <form id="authForm" class="panel-form">
+        <label>이메일(ID)<input type="email" id="email" required /></label>
+        <label>비밀번호(영문+숫자 8~20자)<input type="password" id="password" required /></label>
+        <button type="submit">로그인</button>
+      </form>
+      <form id="profileForm" class="panel-form">
+        <label>상호명<input id="storeName" required /></label>
+        <label>주 활동 지역<input id="mainArea" value="홍대 관광특구" required /></label>
+        <button type="submit">프로필 저장</button>
+      </form>
+      <p id="authStatus"></p>
+      <p id="profileStatus"></p>
+    </aside>
+
+    <aside class="right-panel" id="termsPanel" aria-hidden="true">
+      <div class="panel-head"><h3>약관 및 동의</h3><button class="close" data-close="termsPanel">×</button></div>
+      <label class="consent-row"><input id="agreeRequired" type="checkbox" /> 필수 동의: 회원 인증 및 맞춤 추천</label>
+      <label class="consent-row"><input id="agreeMarketing" type="checkbox" /> 선택 동의: 행사 알림 수신</label>
+      <p class="muted">수집항목: 이메일/프로필/이용 로그 · 보유기간: 탈퇴 시 또는 법정 기간.</p>
+    </aside>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
