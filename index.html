@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>서울 소상공인 AI 비즈니스 코치</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#mainContent">본문 바로가기</a>
+
+    <header class="topbar" role="banner">
+      <div>
+        <h1 data-i18n="appTitle">서울 소상공인 AI 비즈니스 코치</h1>
+        <p data-i18n="appSubtitle">실시간 도시데이터·기상·행사 기반 매출 최적화 플랫폼</p>
+      </div>
+      <div class="toolbar">
+        <label>
+          <span data-i18n="fontSize">글자 크기</span>
+          <select id="fontSizeControl" aria-label="글자 크기">
+            <option value="normal">기본</option>
+            <option value="large">크게</option>
+            <option value="xlarge">아주 크게</option>
+          </select>
+        </label>
+        <label>
+          <span data-i18n="lang">언어</span>
+          <select id="languageControl" aria-label="언어 선택">
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+      </div>
+    </header>
+
+    <main class="container" id="mainContent">
+      <section class="card">
+        <h2 data-i18n="authTitle">로그인 / 회원가입</h2>
+        <form id="authForm" class="grid-form" novalidate>
+          <label>
+            <span data-i18n="email">이메일(ID)</span>
+            <input type="email" id="email" placeholder="owner@example.com" required autocomplete="email" />
+          </label>
+          <label>
+            <span data-i18n="password">비밀번호(영문+숫자, 8~20자)</span>
+            <input type="password" id="password" required autocomplete="current-password" minlength="8" maxlength="20" />
+          </label>
+          <button type="submit" data-i18n="login">로그인</button>
+        </form>
+        <p class="hint" data-i18n="pwHint">영문 1자 이상 + 숫자 1자 이상, 8~20자</p>
+        <p id="authStatus" aria-live="polite"></p>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="consentTitle">개인정보 수집·이용 동의</h2>
+        <label class="consent-row"><input id="agreeRequired" type="checkbox" /> <span data-i18n="requiredConsent">필수 동의: 회원 인증 및 맞춤 추천 제공</span></label>
+        <label class="consent-row"><input id="agreeMarketing" type="checkbox" /> <span data-i18n="optionalConsent">선택 동의: 행사/프로모션 알림 수신</span></label>
+        <details>
+          <summary data-i18n="consentDetailTitle">약관 자세히 보기</summary>
+          <p data-i18n="consentDetail">수집항목: 이메일, 프로필, 서비스 이용 로그. 보유기간: 회원 탈퇴 시 또는 관련 법령 준수 기간.</p>
+        </details>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="profileTitle">프로필 설정</h2>
+        <form id="profileForm" class="grid-form">
+          <label>
+            <span data-i18n="storeName">상호명</span>
+            <input type="text" id="storeName" required />
+          </label>
+          <label>
+            <span data-i18n="businessType">업종</span>
+            <select id="businessType">
+              <option>분식/간편식</option>
+              <option>음료/디저트</option>
+              <option>핸드메이드/잡화</option>
+              <option>기타</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="mainArea">주 활동 지역</span>
+            <input type="text" id="mainArea" placeholder="예: 홍대 관광특구" required />
+          </label>
+          <label>
+            <span data-i18n="notification">알림 채널</span>
+            <select id="notificationMode">
+              <option>이메일</option>
+              <option>SMS</option>
+              <option>이메일+SMS</option>
+            </select>
+          </label>
+          <button type="submit" data-i18n="saveProfile">프로필 저장</button>
+        </form>
+        <p id="profileStatus" aria-live="polite"></p>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="marketTitle">플리마켓/행사 공지 및 신청 도우미</h2>
+        <div id="eventList" class="event-list"></div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="inputTitle">실시간 데이터 입력(JSON)</h2>
+        <textarea id="inputJson" rows="18" aria-label="실시간 데이터 JSON 입력"></textarea>
+        <div class="actions">
+          <button id="analyzeBtn" type="button" data-i18n="analyze">AI 분석 실행</button>
+          <button id="loadSampleBtn" type="button" class="secondary" data-i18n="sample">샘플 데이터</button>
+          <button id="copyResultBtn" type="button" class="secondary" data-i18n="copy">결과 복사</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="outputTitle">AI 코치 분석 결과(JSON)</h2>
+        <pre id="outputJson">{}</pre>
+      </section>
+    </main>
+
+    <footer>
+      <small data-i18n="footer">서울시 소상공인 정착 지원 · 모바일 대응 · 접근성 옵션 제공</small>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
