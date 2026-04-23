@@ -29,3 +29,8 @@ npm test
 ## 참고 데이터
 - 서울 열린데이터 광장 OA-21285
   - https://data.seoul.go.kr/dataList/OA-21285/A/1/datasetView.do
+
+
+## 배포
+- GitHub Pages 자동 배포 워크플로우 제공: `.github/workflows/deploy-pages.yml`
+- 상세 절차: `DEPLOYMENT.md`
