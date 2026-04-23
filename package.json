@@ -1,0 +1,8 @@
+{
+  "name": "seoul-data-api-project",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
